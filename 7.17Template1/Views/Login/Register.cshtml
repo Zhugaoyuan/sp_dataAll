@@ -11,6 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- CSS -->
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
     <link href="~/assets/css/reset.css" rel="stylesheet" />
     <link href="~/assets/css/style.css" rel="stylesheet" />
     <link href="~/assets/css/supersized.css" rel="stylesheet" />
@@ -23,11 +24,12 @@
     <div class="page-container">
         <h1>注册(Register)</h1>
 
-        <input type="text" id="username" name="username" class="username" placeholder="请输入您的用户名！">
-        <input type="password" id="password" name="password" class="password" placeholder="请输入您的用户密码！">
-        <input type="password" id="surepassword" class="password" placeholder="确认用户密码！">
+        <input type="text" id="username" name="username" class="username" placeholder="请输入用户名并字母开头">
+        <input type="password" id="password" name="password" class="password" placeholder="请输入用数字字母组合的密码！">
+        <input id="phone" type="text" placeholder="输入手机号！" style="width:172px" />
+        <input style="width:172px" id="Button1" type="button" value="发送验证码" onclick="getValue()" />
+        <input type="text" id="Validform_msg"  placeholder="请输入验证码！">
         <button type="button" onclick="Regiser()" style="width:150px" class="submit_button">注册</button>  <button type="submit" style="width:150px" onclick="window.location.href='/Login/LoginPage'" class="submit_button">登录</button>
-        <div class="error"><span>+</span></div>
     </div>
     <!-- Javascript -->
     <script src="~/assets/js/jquery-1.8.2.min.js"></script>
@@ -38,15 +40,42 @@
 
 </html>
 <script>
+   
+    //注册账号
     function Regiser() {
-        var name = $("#username").val();
+        var userName = $("#username").val();
+        var passWord = $("#password").val();
         var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[A-Za-z_][A-Za-z_0-9]{3,16}$/;
-        if (reg.test(name)) {
-            alert("成功" + pMD5);
+        var reg1 = /(?![0-9]+$)(?![a-zA-Z]+$)[A-Za-z_][A-Za-z_0-9]{3,16}$/;
+        if (reg.test(userName) & (reg1.test(passWord))) {
+            
         }
         else {
-            alert("密码为空或者用户名格式不正确");
+            alert("用户名或密码格式不正确");
+            return ;
         }
     }
+    //获取手机验证码
+    function getValue() {
+        var phone = document.getElementById('phone').value;
+        if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))) {
+            alert('请输入正确的手机号！');
+        }
+        else {
+            //$.ajax({
+            //    url: "/Login/GetVallue",
+            //    type: "post",
+            //    data: { phone: $("#phone").val() },
+            //    dataType: "json",
+            //    success: function (data) {
+            //        alert(data);
+            //    }
+            //})
+          
+        }
+
+
+    }
+
 
 </script>

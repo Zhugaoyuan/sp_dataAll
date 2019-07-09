@@ -19,7 +19,6 @@ namespace _7._17Template1.Controllers
         /// <returns></returns>
         public ActionResult LoginPage()
         {
-            var s = 0;
             return View();
         }
         /// <summary>
@@ -28,7 +27,17 @@ namespace _7._17Template1.Controllers
         /// <returns></returns>
         public ActionResult Register()
         {
+
             return View();
+        }
+        [HttpPost]
+        public void GetVallue(string phone)
+        {
+
+            ALiYunSendSms aliyun = new ALiYunSendSms();
+            string sc = phone;
+            aliyun.SendSmss(sc);
+            
         }
     }
 }
