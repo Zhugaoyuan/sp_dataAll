@@ -27,17 +27,37 @@ namespace _7._17Template1.Controllers
         /// <returns></returns>
         public ActionResult Register()
         {
+            return View();
+        }
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Register(string userName, string passWord, string phone, string _msg)
+        {
+            string code = ALiYunSendSms.RandomId;
+            if (_msg == code)
+            {
+                Response.Write("<script>alert('注册成功')</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('验证码不正确')</script>");
+            }
 
             return View();
         }
-        [HttpPost]
+
+        /// <summary>
+        /// 获取验证码
+        /// </summary>
+        /// <param name="phone">手机号</param>
         public void GetVallue(string phone)
         {
-
             ALiYunSendSms aliyun = new ALiYunSendSms();
-            string sc = phone;
-            aliyun.SendSmss(sc);
-            
+            Session.Timeout = 1;
+            aliyun.SendSmss(phone);
         }
     }
 }

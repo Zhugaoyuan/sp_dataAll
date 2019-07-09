@@ -9,7 +9,7 @@ namespace _7._17Template1.Controllers
     public  class ALiYunSendSms
     {
        
-        public string RandomId { get; set; }
+        public static string RandomId { get; set; }
         static String product = "Dysmsapi";//短信API产品名称
         static String domain = "dysmsapi.aliyuncs.com";//短信API产品域名
         static String accessId = "LTAI9qn1YUUCmshw";
